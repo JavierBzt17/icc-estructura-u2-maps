@@ -25,7 +25,7 @@ public class Empleado implements Comparable<Empleado>{
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Name: " + name + ", Position: " + position;
+        return "\nID: " + id + ", \nNombre: " + name + ", \nPosition: " + position;
     }
 
     @Override

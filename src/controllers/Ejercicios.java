@@ -28,8 +28,24 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (str1 == null || str2 == null || str1.length() != str2.length()) {
+            return false;
+        }
 
+        int[] charCounts = new int[52]; // Con letras Mayúsculas y minúsculas
+
+        for (int i = 0; i < str1.length(); i++) {
+            charCounts[str1.charAt(i)]++;
+            charCounts[str2.charAt(i)]--;
+        }
+
+        for (int count : charCounts) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /*
@@ -48,9 +64,18 @@ public class Ejercicios {
      * Output: null
      */
     public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+        HashMap<Integer, Integer> mapa = new HashMap<>();
 
+        for (int i = 0; i < nums.length; i++) {
+            int complemento = objetivo - nums[i];
+            if (mapa.containsKey(complemento)) {
+                return new int[] { mapa.get(complemento), i };
+            }
+            mapa.put(nums[i], i);
+        }
+
+        return null; // Si no se encuentra la combinación
+    }
     /**
      * Cuenta la frecuencia de cada caracter en la cadena recibida y
      * muestra el resultado por consola.
