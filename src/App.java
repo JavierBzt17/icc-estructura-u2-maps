@@ -4,11 +4,14 @@ import controllers.EmpleadoDAOHashMap;
 import controllers.EmpleadoDAOTreeMap;
 import controllers.Mapa;
 import models.Empleado;
+import controllers.Ejercicios;
+
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
-        // Ejecuta el ejemplo de uso de HashMap con ejemplos sencillos
+        // Ejecuta el ejemplo de uso de HashMap con ejemplos sencillos.
         runMapExample();
 
         // Ejecuta el ejemplo de gestión de empleados usando HashMap
@@ -46,7 +49,7 @@ public class App {
         empleadoContoller.listarEmpleados();
         empleadoContoller2.listarEmpleados();
     }
-    
+
     private static void runMapExample() {
         Mapa mapa = new Mapa();
         mapa.ejemploConHashMap();
@@ -55,5 +58,26 @@ public class App {
     }
 
     private static void runEjercicios() {
+        Ejercicios ejercicios = new Ejercicios();
+
+        System.out.println("\n Comprobando anagramas:");
+        System.out.println("¿'roma' y 'amor' son anagramas?: " + ejercicios.sonAnagramas("roma", "amor"));
+        System.out.println("¿'hello' y 'bello' son anagramas?: " + ejercicios.areAnagrams("hello", "bello"));
+        System.out.println("¿'triangle' y 'integral' son anagramas?: " + ejercicios.areAnagrams("triangle", "integral"));
+
+        System.out.println("\n Sumatorias:");
+        int[] numsA = {9, 2, 3, 6};
+        int[] resultadoA = ejercicios.sumatoriaDeDos(numsA, 5);
+        System.out.println("Resultado sumatoria A (objetivo 5): " + Arrays.toString(resultadoA));
+
+        int[] resultadoB = ejercicios.sumatoriaDeDos(numsA, 10);
+        System.out.println("Resultado sumatoria B (objetivo 10): " + Arrays.toString(resultadoB));
+
+        System.out.println("\n Frecuencia de caracteres:");
+        System.out.print("Cadena 'hola': ");
+        ejercicios.contarCaracteres("hola");
+
+        System.out.print("Cadena 'banana': ");
+        ejercicios.contarCaracteres("banana");
     }
 }

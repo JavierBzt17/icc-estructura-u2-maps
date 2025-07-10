@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Ejercicios {
 
@@ -28,25 +29,29 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        if (str1 == null || str2 == null || str1.length() != str2.length()) {
+    if (str1 == null || str2 == null || str1.length() != str2.length()) {
+        return false;
+    }
+
+    Map<Character, Integer> frecuencia = new HashMap<>();
+
+    for (char c : str1.toCharArray()) {
+        frecuencia.put(c, frecuencia.getOrDefault(c, 0) + 1);
+    }
+
+    for (char c : str2.toCharArray()) {
+        if (!frecuencia.containsKey(c)) {
             return false;
         }
-
-        int[] charCounts = new int[52]; // Con letras Mayúsculas y minúsculas
-
-        for (int i = 0; i < str1.length(); i++) {
-            charCounts[str1.charAt(i)]++;
-            charCounts[str2.charAt(i)]--;
+        frecuencia.put(c, frecuencia.get(c) - 1);
+        if (frecuencia.get(c) < 0) {
+            return false;
         }
-
-        for (int count : charCounts) {
-            if (count != 0) {
-                return false;
-            }
-        }
-
-        return true;
     }
+
+    return true;
+}
+
 
     /*
      * Dado un array de números enteros y un objetivo, retorna los índices de dos
@@ -85,7 +90,13 @@ public class Ejercicios {
      * Output: {h=1, o=1, l=1, a=1}
      */
     public void contarCaracteres(String texto) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<Character, Integer> frecuencia = new HashMap<>();
+
+        for (char c : texto.toCharArray()) {
+            frecuencia.put(c, frecuencia.getOrDefault(c, 0) + 1);
+        }
+
+        System.out.println(frecuencia);
     }
 
     /**
@@ -97,6 +108,26 @@ public class Ejercicios {
      * Output: true
      */
     public boolean sonAnagramas(String palabra1, String palabra2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (palabra1.length() != palabra2.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> frecuencia = new HashMap<>();
+
+        for (char c : palabra1.toCharArray()) {
+            frecuencia.put(c, frecuencia.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : palabra2.toCharArray()) {
+            if (!frecuencia.containsKey(c)) {
+                return false;
+            }
+            frecuencia.put(c, frecuencia.get(c) - 1);
+            if (frecuencia.get(c) < 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
